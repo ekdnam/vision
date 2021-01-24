@@ -1,6 +1,31 @@
 # Haarcascades
 
-## What are Haar features?
+## Table of Contents
+
+1. Introduction
+2. Features
+   1. What are Haar features?
+   2. Pros & Cons
+      1. Pros
+      2. Cons
+   3. Integral Image (Summed Area Table)
+      1. The algorithm
+   4. Feature Discussion
+3. Learning Classification Functions
+   1. Learning Discussion
+   2. Learning Results
+4. The Attentional Cascade
+   1. Training a Cascade of Classifiers
+   2. Detector Cascade Discussion
+5. Results
+6. Conclusions
+7. References
+
+## 1. Introduction
+
+## 2. Features
+
+### 2. 1. What are Haar features?
 
 [This article](https://towardsdatascience.com/whats-the-difference-between-haar-feature-classifiers-and-convolutional-neural-networks-ce6828343aeb) summarizes the concept best
 > A Haar-Feature is just like a kernel in CNN, except that in a CNN, the values of the kernel are determined by training, while a Haar-Feature is manually determined.
@@ -16,43 +41,45 @@ There are in all **four** types of Haar-features.
 The kernels can look something like this
 
 - First feature
-    |_-1_|_-1_|**5**|
-    |-|--|-|
-    |_-1_|_-1_|**5**|
-    |_-1_|_-1_|**5**|
+    | _-1_ | _-1_ | **5** |
+    | ---- | ---- | ----- |
+    | _-1_ | _-1_ | **5** |
+    | _-1_ | _-1_ | **5** |
 
 - Second feature
-    |**5**|**5**|**5**|
-    |-|--|-|
-    |_-1_|_-1_|_-1_|
-    |_-1_|_-1_|_-1_|
+    | **5** | **5** | **5** |
+    | ----- | ----- | ----- |
+    | _-1_  | _-1_  | _-1_  |
+    | _-1_  | _-1_  | _-1_  |
 
 - Third feature
-    |_-1_|**5**|_-1_|
-    |-|--|-|
-    |_-1_|**5**|_-1_|
-    |_-1_|**5**|_-1_|
+    | _-1_ | **5** | _-1_ |
+    | ---- | ----- | ---- |
+    | _-1_ | **5** | _-1_ |
+    | _-1_ | **5** | _-1_ |
 
 - Fourth feature
-    |**5**|_-1_|_-1_|
-    |-|--|-|
-    |_-1_|**5**|_-1_|
-    |_-1_|_-1_|**5**|
+    | **5** | _-1_  | _-1_  |
+    | ----- | ----- | ----- |
+    | _-1_  | **5** | _-1_  |
+    | _-1_  | _-1_  | **5** |
 
 As we do in CNNs, this 3x3 kernel moves across the image, performing some matrix multiplication operations, emphasizing some features and smoothing others. <sup>[[1]](#hf1)
 
 Haar features specialize in extracting edges, lines, slants in an image. This makes them extremely useful in face detection. It can detect on our faces, with sufficiently good lighting, our eyes, nose, and the face boundary.
 
-### Pros
+### 2. 2. Pros & Cons
+
+#### 2. 2. 1. Pros
 
 - Don't have to train the entire Haar kernel every time, can retrain the weights on a small dataset as well.
 
-### Cons
+#### 2. 2. 2. Cons
 
 - Since the weights are manually determined, and have the special ability of edge and line detection, there may be some error while performing the task on a subject which does not have clear lines and edges.
   - For example, if the lighting is low, or the subject wears sunglasses, the haar features may not be sufficient enough to detect defining features.
 
-## Integral Image (Summed Area Table)
+### 2. 3. Integral Image (Summed Area Table)
 
 The concept is not as difficult as it sounds.
 
@@ -60,7 +87,7 @@ It is an effective way of calculating the sum of pixel values in a given image -
 
 This is then used for calculating the average intensity within the grid. It is preferred that the image is grayscale first.
 
-### The algorithm
+#### 2. 3. 1. The algorithm
 
 ![Equation - initial](../assets/haarcascades/ii-eq-1.svg)
 
@@ -84,21 +111,47 @@ The recurrence relation
 
 (sort of the same equation as above), is used to compute the II in one-pas over the image.<sup>[[4]](#ii4)</sup> Time-complexity is <var>O(1)</var>.
 
-## References
+### 2. 4. Feature Discussion
 
-### The Viola-Jones Paper
+Rectangular features are primitive compared to **_Steerable filters_**<sup>[[5]](#SF1)</sup>.
+
+![Steerable Filters](../assets/haarcascades/steerable-features-WT-Freeman.jpg)
+
+## 3. Learning Classification Functions
+
+### 3. 1. Learning Discussion
+
+### 3. 2. Learning Results
+
+## 4. The Attentional Cascade
+
+### 4. 1. Training a Cascade of Classifiers
+
+### 4. 2. Detector Cascade Discussion
+
+## 5. Results
+
+## 6. Conclusions
+
+## 7. References
+
+### 7. 1. The Viola-Jones Paper
 
 1. <a name = "viola-jones"></a>[Rapid Object Detection using a Boosted Cascade of Simple
 Features](https://www.cs.cmu.edu/~efros/courses/LBMV07/Papers/viola-cvpr-01.pdf)
 
-### Haar features
+### 7. 2. Haar features
 
 1. <a name = "hf1"></a>[What's the difference between Haar-feature classifiers and Convolutional Neural Networks?](https://towardsdatascience.com/whats-the-difference-between-haar-feature-classifiers-and-convolutional-neural-networks-ce6828343aeb)
 2. <a name = "hf2"></a>[What are Haar features used in Face Detection?](https://medium.com/analytics-vidhya/what-is-haar-features-used-in-face-detection-a7e531c8332b)
 
-### Integral Image
+### 7. 3. Integral Image
 
 1. <a name = "ii1"></a>[Computer Vision - The Integral Image](https://computersciencesource.wordpress.com/2010/09/03/computer-vision-the-integral-image/)
 2. <a name = "ii2"></a>[integralImage](https://in.mathworks.com/help/images/ref/integralimage.html)
 3. <a name = "ii3"></a>[Summed Area Table](https://en.wikipedia.org/wiki/Summed-area_table)
 4. <a name = "ii4"></a>[Integral image-based representations](http://www.cse.yorku.ca/~kosta/CompVis_Notes/integral_representations.pdf)
+
+### 7. 4. Steerable Filters
+
+1. <a name = "SF1"></a>[The Design and Use of Steerable filters](http://robots.stanford.edu/cs223b04/SteerableFiltersfreeman91design.pdf)
