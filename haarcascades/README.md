@@ -2,24 +2,30 @@
 
 ## Table of Contents
 
-1. Introduction
-2. Features
-   1. What are Haar features?
-   2. Pros & Cons
-      1. Pros
-      2. Cons
-   3. Integral Image (Summed Area Table)
-      1. The algorithm
-   4. Feature Discussion
-3. Learning Classification Functions
-   1. Learning Discussion
-   2. Learning Results
-4. The Attentional Cascade
-   1. Training a Cascade of Classifiers
-   2. Detector Cascade Discussion
-5. Results
-6. Conclusions
-7. References
+- [Haarcascades](#haarcascades)
+  - [Table of Contents](#table-of-contents)
+  - [1. Introduction](#1-introduction)
+  - [2. Features](#2-features)
+    - [2. 1. What are Haar features?](#2-1-what-are-haar-features)
+    - [2. 2. Pros & Cons](#2-2-pros--cons)
+      - [2. 2. 1. Pros](#2-2-1-pros)
+      - [2. 2. 2. Cons](#2-2-2-cons)
+    - [2. 3. Integral Image (Summed Area Table)](#2-3-integral-image-summed-area-table)
+      - [2. 3. 1. The algorithm](#2-3-1-the-algorithm)
+    - [2. 4. Feature Discussion](#2-4-feature-discussion)
+  - [3. Learning Classification Functions](#3-learning-classification-functions)
+    - [3. 1. Learning Discussion](#3-1-learning-discussion)
+    - [3. 2. Learning Results](#3-2-learning-results)
+  - [4. The Attentional Cascade](#4-the-attentional-cascade)
+    - [4. 1. Training a Cascade of Classifiers](#4-1-training-a-cascade-of-classifiers)
+    - [4. 2. Detector Cascade Discussion](#4-2-detector-cascade-discussion)
+  - [5. Results](#5-results)
+  - [6. Conclusions](#6-conclusions)
+  - [7. References](#7-references)
+    - [7. 1. The Viola-Jones Paper](#7-1-the-viola-jones-paper)
+    - [7. 2. Haar features](#7-2-haar-features)
+    - [7. 3. Integral Image](#7-3-integral-image)
+    - [7. 4. Steerable Filters](#7-4-steerable-filters)
 
 ## 1. Introduction
 
