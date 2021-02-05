@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-- [Haarcascades](#haarcascades)
+<!-- - [Haarcascades](#haarcascades)
   - [Table of Contents](#table-of-contents)
   - [1. Introduction](#1-introduction)
   - [2. Features](#2-features)
@@ -25,7 +25,7 @@
     - [7. 1. The Viola-Jones Paper](#7-1-the-viola-jones-paper)
     - [7. 2. Haar features](#7-2-haar-features)
     - [7. 3. Integral Image](#7-3-integral-image)
-    - [7. 4. Steerable Filters](#7-4-steerable-filters)
+    - [7. 4. Steerable Filters](#7-4-steerable-filters) -->
 
 ## 1. Introduction
 
