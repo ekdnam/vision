@@ -10,7 +10,7 @@ class C1(nn.Module):
         self.c1 = nn.Sequential(
             OrderedDict(
                 [
-                    ("c1",nn.Conv2d(in_channels=1, out_channels=6, kernel_size=(5, 5)),),
+                    ("c1", nn.Conv2d(in_channels=1, out_channels=6, kernel_size=(5, 5))),
                     ("relu1", nn.ReLU()),
                     ("maxpool1", nn.MaxPool2d(kernel_size=(2, 2), stride=2)),
                 ]
@@ -28,7 +28,7 @@ class C2(nn.Module):
         self.c2 = nn.Sequential(
             OrderedDict(
                 [
-                    ("c2",nn.Conv2d(in_channels=6, out_channels=16, kernel_size=(5, 5)),),
+                    ("c2", nn.Conv2d(in_channels=6, out_channels=16, kernel_size=(5, 5))),
                     ("relu2", nn.ReLU()),
                     ("maxpool2", nn.MaxPool2d(kernel_size=(2, 2), stride=2)),
                 ]
@@ -46,7 +46,7 @@ class C3(nn.Module):
         self.c3 = nn.Sequential(
             OrderedDict(
                 [
-                    ("c3",nn.Conv2d(in_channels=16, out_channels=120, kernel_size=(5, 5)),),
+                    ("c3", nn.Conv2d(in_channels=16, out_channels=120, kernel_size=(5, 5))),
                     ("relu3", nn.ReLU()),
                 ]
             )
