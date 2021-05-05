@@ -3,7 +3,9 @@ import torch.nn as nn
 
 
 class block(nn.Module):
-    def __init__(self, in_channels, intermediate_channels, identity_downsample=None, stride=1):
+    def __init__(
+        self, in_channels, intermediate_channels, identity_downsample=None, stride=1
+    ):
         super(block, self).__init__()
         self.expansion = 4
         self.conv1 = nn.Conv2d(
@@ -61,16 +63,26 @@ class ResNet(nn.Module):
     def __init__(self, block, layers, image_channels, num_classes):
         super(ResNet, self).__init__()
         self.in_channels = 64
-        self.conv1 = nn.Conv2d(image_channels, 64, kernel_size=7, stride=2, padding=3, bias=False)
+        self.conv1 = nn.Conv2d(
+            image_channels, 64, kernel_size=7, stride=2, padding=3, bias=False
+        )
         self.bn1 = nn.BatchNorm2d(64)
         self.relu = nn.ReLU()
         self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
 
         # Essentially the entire ResNet architecture are in these 4 lines below
-        self.layer1 = self._make_layer(block, layers[0], intermediate_channels=64, stride=1)
-        self.layer2 = self._make_layer(block, layers[1], intermediate_channels=128, stride=2)
-        self.layer3 = self._make_layer(block, layers[2], intermediate_channels=256, stride=2)
-        self.layer4 = self._make_layer(block, layers[3], intermediate_channels=512, stride=2)
+        self.layer1 = self._make_layer(
+            block, layers[0], intermediate_channels=64, stride=1
+        )
+        self.layer2 = self._make_layer(
+            block, layers[1], intermediate_channels=128, stride=2
+        )
+        self.layer3 = self._make_layer(
+            block, layers[2], intermediate_channels=256, stride=2
+        )
+        self.layer4 = self._make_layer(
+            block, layers[3], intermediate_channels=512, stride=2
+        )
 
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
         self.fc = nn.Linear(512 * 4, num_classes)
@@ -110,7 +122,9 @@ class ResNet(nn.Module):
                 nn.BatchNorm2d(intermediate_channels * 4),
             )
 
-        layers.append(block(self.in_channels, intermediate_channels, identity_downsample, stride))
+        layers.append(
+            block(self.in_channels, intermediate_channels, identity_downsample, stride)
+        )
 
         # The expansion size is always 4 for ResNet 50,101,152
         self.in_channels = intermediate_channels * 4
