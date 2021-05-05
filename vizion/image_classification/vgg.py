@@ -49,6 +49,7 @@ VGG_types = {
     ],
 }
 
+
 class VGG(nn.Module):
     def __init__(self, in_channels, num_classes, architecture):
         super(VGG, self).__init__()
@@ -101,7 +102,7 @@ class VGG(nn.Module):
 
 
 if __name__ == "__main__":
-    device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    model = VGG(3, 1000, VGG_types['VGG16']).to(device)
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model = VGG(3, 1000, VGG_types["VGG16"]).to(device)
     x = torch.randn(1, 3, 224, 224)
     print(model(x).shape)
