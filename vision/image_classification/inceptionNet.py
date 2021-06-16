@@ -109,7 +109,8 @@ class InceptionNet(nn.Module):
 
         return x
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     x = torch.randn(3, 3, 224, 224)
     model = InceptionNet()
     print(model(x).shape)

@@ -75,7 +75,7 @@ class MobileNetV1(nn.Module):
 
         # self.avgPool = nn.AvgPool2d(kernel_size=(7,7), stride=1)
         self.fc = nn.Linear(in_features=1024, out_features=num_classes)
-        
+
     def forward(self, x):
         x = self.convBlock(x)
         # x = self.avgPool(x)
@@ -98,7 +98,7 @@ class MobileNetV1(nn.Module):
             nn.ReLU(inplace=True),
         )
         return block
-    
+
     def createConvDwBlock(self, in_channels, out_channels, stride):
         block = nn.Sequential(
             # depth wise convolution signified by groups = in_channels
@@ -125,7 +125,7 @@ class MobileNetV1(nn.Module):
         return block
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     model = MobileNetV1()
     x = torch.randn(3, 3, 224, 224)
     print(model(x).shape)
