@@ -64,28 +64,7 @@ class SqueezeNet(nn.Module):
         super(SqueezeNet, self).__init__()
         self.num_classes = num_classes
 
-        # self.model = nn.Sequential(OrderedDict([
-        #     ('conv1', nn.Conv2d(in_channels=3, out_channels=96, kernel_size=(7,7), stride=2)),
-        #     ('relu1', nn.ReLU(inplace=True)),
-        #     ('maxpool1', nn.MaxPool2d(kernel_size=3, stride=2)),
-        #     ('fire1',Fire(in_channels=96, squeeze_channels=16, expand1x1_channels=64, expand3x3_channels=64)),
-        #     ('fire2', Fire(in_channels=128, squeeze_channels=16, expand1x1_channels=64, expand3x3_channels=64)),
-        #     ('fire3', Fire(in_channels=128, squeeze_channels=32, expand1x1_channels=128, expand3x3_channels=128)),
-        #     ('maxpool2', nn.MaxPool2d(kernel_size=(3,3), stride=2)),
-        #     ('fire4', Fire(in_channels=256, squeeze_channels=32, expand1x1_channels=128, expand3x3_channels=128)),
-        #     ('fire5', Fire(in_channels=256, squeeze_channels=48, expand1x1_channels=192, expand3x3_channels=192)),
-        #     ('fire6', Fire(in_channels=384, squeeze_channels=48, expand1x1_channels=192, expand3x3_channels=192)),
-        #     ('fire7',Fire(in_channels=384, squeeze_channels=64, expand1x1_channels=192, expand3x3_channels=192)),
-        #     ('maxpool3', nn.MaxPool2d(kernel_size=(3,3), stride=2)),
-        #     ('fire8', Fire(in_channels=512, squeeze_channels=64, expand1x1_channels=256, expand3x3_channels=256)),
-        #     ('dropout1', nn.Dropout(p=0.5)),
-        #     ('conv2', nn.Conv2d(in_channels=512, out_channels=num_classes, kernel_size=(1,1))),
-        #     ('relu2', nn.ReLU(inplace=True)),
-        #     ('avgpool1',nn.AvgPool2d(kernel_size=13))
-        # ]))
-        self.conv1 = nn.Conv2d(
-            in_channels=3, out_channels=96, kernel_size=7, stride=2
-        )
+        self.conv1 = nn.Conv2d(in_channels=3, out_channels=96, kernel_size=7, stride=2)
         self.relu1 = nn.ReLU()
         self.maxpool1 = nn.MaxPool2d(kernel_size=3, stride=2)
         self.fire1 = Fire(
@@ -143,31 +122,51 @@ class SqueezeNet(nn.Module):
             in_channels=512, out_channels=num_classes, kernel_size=(1, 1)
         )
         self.relu2 = nn.ReLU()
-        # self.avgpool1 = nn.AvgPool2d(kernel_size=4, stride=4)
+        self.avgpool1 = nn.AvgPool2d(kernel_size=12, stride=1)
 
     def forward(self, x):
+        # print("Input " + str(x.size()))
         x = self.conv1(x)
+        # print("Conv1 " + str(x.size()))
         x = self.relu1(x)
+        # print("ReLU " + str(x.size()))
         x = self.maxpool1(x)
+        # print("Maxpool1 " + str(x.size()))
         x = self.fire1(x)
+        # print("Fire1 " + str(x.size()))
         x = self.fire2(x)
+        # print("Fire2 " + str(x.size()))
         x = self.fire3(x)
+        # print("Fire3 " + str(x.size()))
         x = self.maxpool2(x)
+        # print("Maxpool2 " + str(x.size()))
         x = self.fire4(x)
+        # print("Fire4 " + str(x.size()))
         x = self.fire5(x)
+        # print("Fire5 " + str(x.size()))
         x = self.fire6(x)
+        # print("Fire6 " + str(x.size()))
         x = self.fire7(x)
+        # print("Fire7 " + str(x.size()))
         x = self.maxpool3(x)
+        # print("Maxpool3 " + str(x.size()))
         x = self.fire8(x)
+        # print("Fire8 " + str(x.size()))
         x = self.dropout1(x)
+        # print("Dropout1 " + str(x.size()))
         x = self.conv2(x)
+        # print("Conv2 " + str(x.size()))
         x = self.relu2(x)
-        # x = self.avgpool1(x)
+        # print("Relu2 " + str(x.size()))
+        x = self.avgpool1(x)
+        # print("Avgpool1 " + str(x.size()))
 
+        # print("Final " + str(x.size()))
         return x.view(x.size(0), self.num_classes)
+
 
 if __name__ == "__main__":
     model = SqueezeNet().to("cpu")
-    x = torch.randn(3, 3, 224, 224)
+    x = torch.randn(1, 3, 224, 224)
     y = model(x)
     print(y.size())
