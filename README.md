@@ -12,6 +12,7 @@
     - [ResNet](#ResNet)
     - [MobileNet](#MobileNet)
     - [SqueezeNet](#SqueezeNet)
+- [Object Detection](#Object-detection)
     
 
 ### Image Recognition
@@ -72,3 +73,8 @@ Code: [mobilenetv1.py](vision/image_classification/mobilenetv1.py)
 Paper: [SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size](https://arxiv.org/abs/1602.07360)
 
 Code: [squezenet.py](vision/image_classification/squezenet.py)
+
+
+### Object Detection
+
+WIP
