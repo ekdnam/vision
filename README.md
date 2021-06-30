@@ -1,6 +1,6 @@
 # vision
 
- Some basic CV related tasks and notes for my personal use. Created while learning pytorch and following different tutorials on the internet. For the notes sections, go [here](notes)
+ Some basic CV related tasks and notes for my personal use. Created while learning pytorch and following different tutorials on the internet. For the notes section, go [here](notes)
 
 ## Table of Contents
 
